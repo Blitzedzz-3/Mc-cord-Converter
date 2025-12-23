@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Minecraft Coordinate Converter</title>
+<link rel="preload" href="assets/fonts/Minecraft.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+    @font-face {
+    	font-family: 'Minecraft';
+    	src: url('assets/fonts/Minecraft.woff2') format('woff2');
+    	font-weight: normal;
+    	font-style: normal;
+    }
+
+
+    body {
+        font-family: 'Press Start 2P', cursive;
+        background: url('assets/img/bg.gif') no-repeat center center;
+        background-size: cover;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .box {
+        background: #222;
+        padding: 30px 25px;
+        border-radius: 15px;
+        width: 320px;
+        box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+        text-align: center;
+        transition: transform 0.2s ease;
+        font-family: 'Minecraft';
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .box:hover {
+        transform: scale(1.02);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #ff4d4d;
+        font-size: 18px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background: #111;
+        border: 2px solid #333;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border 0.2s;
+    }
+
+    input:focus {
+        border-color: #ff4d4d;
+        outline: none;
+    }
+
+button {
+    font-family: 'Minecraft', sans-serif; /* <- force Minecraft font */
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #ff4d4d;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+    button:hover {
+        background: #ff1a1a;
+        transform: translateY(-2px);
+    }
+
+    .result {
+        margin-top: 15px;
+        padding: 10px;
+        background: #111;
+        border-radius: 8px;
+        border: 1px solid #333;
+        font-size: 14px;
+        display: none;
+    }
+
+    p {
+        margin-top: 12px;
+        font-size: 10px;
+        color: #aaa;
+    }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>MC Coord Converter</h2>
+
+    <input id="x" type="number" placeholder="X coordinate">
+    <input id="z" type="number" placeholder="Z coordinate">
+
+    <button onclick="toNether()">Overworld → Nether</button>
+    <button onclick="toOverworld()">Nether → Overworld</button>
+
+    <div class="result" id="result"></div>
+    <p>Made by blitzedzz</p>
+</div>
+
+<script>
+function toNether() {
+    const x = Number(document.getElementById("x").value);
+    const z = Number(document.getElementById("z").value);
+    if(isNaN(x) || isNaN(z)) {
+        document.getElementById("result").innerText = "Please enter valid numbers!";
+        return;
+    }
+    document.getElementById('result').style.display = 'block';
+    document.getElementById("result").innerText = `Nether: X: ${ (x / 8).toFixed(2) }, Z: ${ (z / 8).toFixed(2) }`;
+}
+
+function toOverworld() {
+    const x = Number(document.getElementById("x").value);
+    const z = Number(document.getElementById("z").value);
+    if(isNaN(x) || isNaN(z)) {
+        document.getElementById("result").innerText = "Please enter valid numbers!";
+        return;
+    }
+    document.getElementById('result').style.display = 'block';
+
+    document.getElementById("result").innerText = `Overworld: X: ${ (x * 8).toFixed(2) }, Z: ${ (z * 8).toFixed(2) }`;
+}
+</script>
+
+</body>
+</html>
